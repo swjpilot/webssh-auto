@@ -43,7 +43,7 @@ def app_listen(app, port, address, server_settings):
 def main():
     options.parse_command_line()
     logging.info(
-        f"Options configured: {options.hostname}, {options.port}, {options.user}, {options.password} "
+        f"Options configured: {options.sshhost}, {options.port}, {options.user}, {options.password} "
     )
     check_encoding_setting(options.encoding)
     loop = tornado.ioloop.IOLoop.current()

@@ -48,7 +48,7 @@ define('delay', type=float, default=3, help='The delay to call recycle_worker')
 define('maxconn', type=int, default=20,
        help='Maximum live connections (ssh sessions) per client')
 define('font', default='', help='custom font filename')
-define('hostname', default='', help='hostname to connect to automatically')
+define('sshhost', default='', help='hostname to connect to automatically')
 define('sshport', default='22', help='hostname to connect to automatically')
 define('user', default='', help='user to use to connect automatically')
 define('password', default='', help='password to use to connect automatically')
