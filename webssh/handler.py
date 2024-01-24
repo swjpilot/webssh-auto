@@ -486,6 +486,7 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
         ssh = self.ssh_client
         dst_addr = args[:2]
         logging.info('Connecting to {}:{}'.format(*dst_addr))
+        logging.info(f"arguments: {args}")
 
         try:
             ssh.connect(*args, timeout=options.timeout)
