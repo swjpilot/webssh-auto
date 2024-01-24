@@ -301,6 +301,24 @@ class MixinHandler(object):
             port = 65535
 
         return (ip, port)
+    
+    def get_username(self, name):
+        value = self.get_argument(name)
+        if (value is None):
+            value=options.username
+        if not value:
+            raise InvalidValueError('Missing value {}'.format(name))
+        return value
+    
+    def get_password(self, name):
+        value = self.get_argument(name)
+        if (value is None):
+            value=options.password
+        if (value is None):
+            value=self.get_argument('password', u'')
+        if not value:
+            raise InvalidValueError('Missing value {}'.format(name))
+        return value
 
 
 class NotFoundHandler(MixinHandler, tornado.web.ErrorHandler):
@@ -363,16 +381,31 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
 
     def get_hostname(self):
         value = self.get_value('hostname')
+        if (value is None):
+            value=options.hostname 
+        if not (is_valid_hostname(value) or is_valid_ip_address(value)):
+            raise InvalidValueError('Invalid hostname: {}'.format(value))
+        return value
+    
+    def get_term(self):
+        if (value is None):
+            value=options.term
+        if (value is None):
+            value=self.get_argument('term', u'') or u'xterm'
         if not (is_valid_hostname(value) or is_valid_ip_address(value)):
             raise InvalidValueError('Invalid hostname: {}'.format(value))
         return value
 
     def get_port(self):
         value = self.get_argument('port', u'')
+        if (value is None):
+            value=options.port
         if not value:
             return DEFAULT_PORT
 
         port = to_int(value)
+        if (value is None):
+            value=options.hostname 
         if port is None or not is_valid_port(port):
             raise InvalidValueError('Invalid port: {}'.format(value))
         return port
@@ -390,8 +423,8 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
     def get_args(self):
         hostname = self.get_hostname()
         port = self.get_port()
-        username = self.get_value('username')
-        password = self.get_argument('password', u'')
+        username = self.get_username('username')
+        password = self.get_password('password')
         privatekey, filename = self.get_privatekey()
         passphrase = self.get_argument('passphrase', u'')
         totp = self.get_argument('totp', u'')
@@ -462,7 +495,7 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
         except paramiko.BadHostKeyException:
             raise ValueError('Bad host key.')
 
-        term = self.get_argument('term', u'') or u'xterm'
+        term = self.get_term('term')
         chan = ssh.invoke_shell(term=term)
         chan.setblocking(0)
         worker = Worker(self.loop, ssh, chan, dst_addr)

@@ -536,7 +536,7 @@ jQuery(function($){
       if (url_opts_data.command) {
         setTimeout(function () {
           sock.send(JSON.stringify({'data': url_opts_data.command+'\r'}));
-        }, 500);
+        }, 10500);
       }
     };
 
@@ -831,6 +831,7 @@ jQuery(function($){
       }
     );
   }
+
 
 
   parse_url_data(
