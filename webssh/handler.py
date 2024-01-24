@@ -380,9 +380,10 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
         return value, filename
 
     def get_hostname(self):
-        value = self.get_value('hostname')
-        if not value:
-            value = options.sshhost 
+        if options.sshhost:
+            value = options.sshhost
+        elif not value:
+            value = self.get_value('hostname')
         if not (is_valid_hostname(value) or is_valid_ip_address(value)):
             raise InvalidValueError('Invalid hostname: {}'.format(value))
         return value

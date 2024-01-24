@@ -695,17 +695,6 @@ jQuery(function($){
       });
     }
 
-    //var result = validate_form_data(data);
-    var result = {
-        valid: true,
-        data: data,
-        title: ''
-        }
-        
-    if (!result.valid) {
-      log_status(result.errors.join('\n'));
-      return;
-    }
 
     if (pk && pk.size && !debug) {
       read_file_as_text(pk, function(text) {
