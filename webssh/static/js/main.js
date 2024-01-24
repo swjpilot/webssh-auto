@@ -552,7 +552,7 @@ jQuery(function($){
       term.dispose();
       term = undefined;
       sock = undefined;
-      reset_wssh();
+      // reset_wssh();
       log_status(e.reason, true);
       state = DISCONNECTED;
       default_title = 'WebSSH';
