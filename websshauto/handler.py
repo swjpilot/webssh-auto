@@ -17,7 +17,7 @@ from websshauto.utils import (
     to_int, to_ip_address, UnicodeType, is_ip_hostname, is_same_primary_domain,
     is_valid_encoding
 )
-from webssh.worker import Worker, recycle_worker, clients
+from websshauto.worker import Worker, recycle_worker, clients
 
 try:
     from json.decoder import JSONDecodeError

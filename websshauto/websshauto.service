@@ -1,0 +1,13 @@
+
+Description=WebSSH
+
+[Service]
+RemainAfterExit=yes
+ExecStart=websshauto.sh start
+ExecRestart=websshauto.sh restart
+ExecStop=websshauto.sh stop
+user=root
+group=root
+
+[Install]
+WantedBy=multi-user.target

@@ -4,7 +4,7 @@ import ssl
 import sys
 
 from tornado.options import define
-from webssh.policy import (
+from websshauto.policy import (
     load_host_keys, get_policy_class, check_policy_setting
 )
 from websshauto.utils import (
@@ -53,6 +53,10 @@ define('sshport', default='22', help='hostname to connect to automatically')
 define('user', default='', help='user to use to connect automatically')
 define('password', default='', help='password to use to connect automatically')
 define('term', default='', help='emulation to use to connect automatically')
+define('autoconnect', default='false', help='Auto Connect to SSH Server')
+define('bgcolor', default='black', help='Terminal Background color')
+define('fgcolor', default='white', help='Terminal Text Color')
+define('curcolor', default='white', help='Terminal Cursor Color')
 define('encoding', default='',
        help='''The default character encoding of ssh servers.
 Example: --encoding='utf-8' to solve the problem with some switches&routers''')
@@ -61,7 +65,7 @@ define('version', type=bool, help='Show version information',
 
 
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-font_dirs = ['webssh', 'static', 'css', 'fonts']
+font_dirs = ['websshauto', 'static', 'css', 'fonts']
 max_body_size = 1 * 1024 * 1024
 
 
@@ -80,10 +84,14 @@ class Font(object):
 
 def get_app_settings(options):
     settings = dict(
-        template_path=os.path.join(base_dir, 'webssh', 'templates'),
-        static_path=os.path.join(base_dir, 'webssh', 'static'),
+        template_path=os.path.join(base_dir, 'websshauto', 'templates'),
+        static_path=os.path.join(base_dir, 'websshauto', 'static'),
         websocket_ping_interval=options.wpintvl,
         debug=options.debug,
+        autoconnect=options.autoconnect,
+        bgcolor=options.bgcolor,
+        fgcolor=options.fgcolor,
+        curcolor=options.curcolor,
         xsrf_cookies=options.xsrf,
         font=Font(
             get_font_filename(options.font,

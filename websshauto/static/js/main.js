@@ -42,7 +42,7 @@ jQuery(function($){
       waiter = $('#waiter'),
       term_type = $('#term'),
       style = {},
-      default_title = 'WebSSH',
+      default_title = 'WebSSHAuto',
       title_element = document.querySelector('title'),
       form_id = '#connect',
       debug = document.querySelector(form_id).noValidate,
@@ -368,9 +368,9 @@ jQuery(function($){
         termOptions = {
           cursorBlink: true,
           theme: {
-            background: url_opts_data.bgcolor || 'black',
-            foreground: url_opts_data.fontcolor || 'white',
-            cursor: url_opts_data.cursor || url_opts_data.fontcolor || 'white'
+            background: url_opts_data.bgcolor || bgcolor,
+            foreground: url_opts_data.fontcolor || fgcolor,
+            cursor: url_opts_data.cursor || url_opts_data.fontcolor || curcolor
           }
         };
 
@@ -555,7 +555,7 @@ jQuery(function($){
       reset_wssh();
       log_status(e.reason, true);
       state = DISCONNECTED;
-      default_title = 'WebSSH';
+      default_title = 'WebSSHAuto';
       title_element.text = default_title;
     };
 

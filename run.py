@@ -1,4 +1,4 @@
-from webssh-auto.main import main
+from websshauto.main import main
 
 
 if __name__ == '__main__':
