@@ -305,7 +305,7 @@ class MixinHandler(object):
     def get_username(self, name):
         value = self.get_argument(name)
         if (value is None):
-            value=options.username
+            value=options.user
         if not value:
             raise InvalidValueError('Missing value {}'.format(name))
         return value
@@ -381,16 +381,16 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
 
     def get_hostname(self):
         value = self.get_value('hostname')
-        if (value is None):
+        if not value:
             value=options.hostname 
         if not (is_valid_hostname(value) or is_valid_ip_address(value)):
             raise InvalidValueError('Invalid hostname: {}'.format(value))
         return value
     
     def get_term(self):
-        if (value is None):
+        if not value:
             value=options.term
-        if (value is None):
+        if not value:
             value=self.get_argument('term', u'') or u'xterm'
         if not (is_valid_hostname(value) or is_valid_ip_address(value)):
             raise InvalidValueError('Invalid hostname: {}'.format(value))
@@ -398,13 +398,13 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
 
     def get_port(self):
         value = self.get_argument('port', u'')
-        if (value is None):
+        if not value:
             value=options.sshport
         if not value:
             return DEFAULT_PORT
 
         port = to_int(value)
-        if (value is None):
+        if not value:
             value=options.hostname 
         if port is None or not is_valid_port(port):
             raise InvalidValueError('Invalid port: {}'.format(value))
@@ -421,8 +421,8 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
                     )
 
     def get_args(self):
-        hostname = self.get_hostname('hostname')
-        port = self.get_port('port')
+        hostname = self.get_hostname()
+        port = self.get_port()
         username = self.get_username('username')
         password = self.get_password('password')
         privatekey, filename = self.get_privatekey()
