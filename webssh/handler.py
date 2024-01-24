@@ -399,7 +399,7 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
     def get_port(self):
         value = self.get_argument('port', u'')
         if (value is None):
-            value=options.port
+            value=options.sshport
         if not value:
             return DEFAULT_PORT
 
