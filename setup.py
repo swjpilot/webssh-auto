@@ -1,6 +1,6 @@
 import codecs
 from setuptools import setup
-from webssh._version import __version__ as version
+from webssh-auto._version import __version__ as version
 
 
 with codecs.open('README.rst', encoding='utf-8') as f:
@@ -8,17 +8,17 @@ with codecs.open('README.rst', encoding='utf-8') as f:
 
 
 setup(
-    name='webssh',
+    name='webssh-auto',
     version=version,
     description='Web based ssh client',
     long_description=long_description,
-    author='Shengdun Hua',
-    author_email='webmaster0115@gmail.com',
-    url='https://github.com/huashengdun/webssh',
-    packages=['webssh'],
+    author='Scott John',
+    author_email='scott@thejohnweb.com',
+    url='https://github.com/swjpilot/webssh-auto',
+    packages=['webssh-auto'],
     entry_points='''
     [console_scripts]
-    wssh = webssh.main:main
+    wssh-auto = webssh-auto.main:main
     ''',
     license='MIT',
     include_package_data=True,

@@ -253,7 +253,7 @@ jQuery(function($){
     return JSON.stringify({'cols': cols, 'rows': rows});
   }
 
-
+<!--
   function read_as_text_with_decoder(file, callback, decoder) {
     var reader = new window.FileReader();
 
@@ -281,7 +281,7 @@ jQuery(function($){
     reader.readAsArrayBuffer(file);
   }
 
-
+-->
   function read_as_text_with_encoding(file, callback, encoding) {
     var reader = new window.FileReader();
 
@@ -552,7 +552,7 @@ jQuery(function($){
       term.dispose();
       term = undefined;
       sock = undefined;
-      // reset_wssh();
+      reset_wssh();
       log_status(e.reason, true);
       state = DISCONNECTED;
       default_title = 'WebSSH';

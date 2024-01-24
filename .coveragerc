@@ -1,6 +1,6 @@
 [run]
 branch = true
-source = webssh
+source = webssh-auto
 
 [report]
 exclude_lines =

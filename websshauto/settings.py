@@ -7,10 +7,10 @@ from tornado.options import define
 from webssh.policy import (
     load_host_keys, get_policy_class, check_policy_setting
 )
-from webssh.utils import (
+from websshauto.utils import (
     to_ip_address, parse_origin_from_url, is_valid_encoding
 )
-from webssh._version import __version__
+from websshauto._version import __version__
 
 
 def print_version(flag):

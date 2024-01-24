@@ -20,6 +20,8 @@ A simple web application to be used as an ssh client to connect to your ssh serv
 * Terminal window resizable.
 * Auto detect the ssh server's default encoding.
 * Modern browsers including Chrome, Firefox, Safari, Edge, Opera supported.
+* Can be set to autoconnect to a ssh server with options from command line
+
 
 
 ### Preview
