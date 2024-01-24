@@ -790,6 +790,8 @@ jQuery(function($){
 
   wssh.connect = connect;
 
+  wssh.connect();
+
   $(form_id).submit(function(event){
     event.preventDefault();
     connect();
