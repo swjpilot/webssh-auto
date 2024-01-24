@@ -303,18 +303,18 @@ class MixinHandler(object):
         return (ip, port)
     
     def get_username(self, name):
-        value = self.get_argument(name)
-        if not value:
+        if options.user:
             value = options.user
+        elif not value:
+            value = self.get_argument(name)
         if not value:
             raise InvalidValueError('Missing value {}'.format(name))
         return value
     
     def get_password(self, name):
-        value = self.get_argument(name)
-        if not value:
+        if options.password:
             value = options.password
-        if not value:
+        elif not value:
             value = self.get_argument('password', u'')
         if not value:
             raise InvalidValueError('Missing value {}'.format(name))
@@ -389,24 +389,26 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
         return value
     
     def get_term(self):
-        if not value:
+        if options.term:
             value = options.term
-        if not value:
+        elif not value:
             value = self.get_argument('term', u'') or u'xterm'
         if not (is_valid_hostname(value) or is_valid_ip_address(value)):
             raise InvalidValueError('Invalid hostname: {}'.format(value))
         return value
 
     def get_port(self):
-        value = self.get_argument('port', u'')
-        if not value:
+        
+        if options.sshport:
             value = options.sshport
-        if not value:
+        elif not value:
+            value = self.get_argument('port', u'')
+        elif not value:
             return DEFAULT_PORT
 
         port = to_int(value)
         if not value:
-            value = options.hostname 
+            value = options.sshport 
         if port is None or not is_valid_port(port):
             raise InvalidValueError('Invalid port: {}'.format(value))
         return port
