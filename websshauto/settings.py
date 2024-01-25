@@ -193,8 +193,7 @@ def get_origin_setting(options):
 
 
 def get_font_filename(font, font_dir):
-    filenames = {f for f in os.listdir(font_dir) if not f.startswith('.')
-                 and os.path.isfile(os.path.join(font_dir, f))}
+    filenames = {f for f in os.listdir(font_dir) if not f.startswith('.') and os.path.isfile(os.path.join(font_dir, f))}
     if font:
         if font not in filenames:
             raise ValueError(
