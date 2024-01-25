@@ -40,9 +40,7 @@
     <div id="waiter" style="display: none"> Connecting ... </div>
 
     <div class="container form-container" style="display: none">
-      <form id="connect" action="" method="post" enctype="multipart/form-data"{% if debug %} novalidate{% end %}>
-        <button type="submit" class="btn btn-primary">Connect</button>
-      </form>
+        <button onclick='wssh.connect()' class="btn btn-primary">ReConnect</button>
     </div>
 
     <div class="container">
