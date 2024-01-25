@@ -525,7 +525,7 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
         pass
 
     def get(self):
-        self.render('index.html', debug=self.debug, font=self.font)
+        self.render('index.html', debug=self.debug, font=self.font, autoconnect=self.autoconnect, bgcolor=self.bgcolor, fgcolor=self.fgcolor, curcolor=self.curcolor)
 
     @tornado.gen.coroutine
     def post(self):
