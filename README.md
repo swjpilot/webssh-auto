@@ -1,7 +1,4 @@
 ## WebSSHAuto
-
-[![python](https://github.com/swjpilot/websshauto/actions/workflows/python.yml/badge.svg)](https://github.com/swjpilot/websshauto/actions/workflows/python.yml)
-[![codecov](https://raw.githubusercontent.com/awjpilot/websshauto/coverage-badge/coverage.svg)](https://raw.githubusercontent.com/swjpilot/websshauto/coverage-badge/coverage.svg)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/webssh.svg)
 ![PyPI](https://img.shields.io/pypi/v/webssh.svg)
 
