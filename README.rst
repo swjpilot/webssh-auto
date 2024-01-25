@@ -1,14 +1,15 @@
-WebSSH
+WebSSHAuto
 ------
-
-|Build Status| |codecov| |PyPI - Python Version| |PyPI|
 
 Introduction
 ~~~~~~~~~~~~
 
-A simple web application to be used as an ssh client to connect to your
-ssh servers. It is written in Python, base on tornado, paramiko and
-xterm.js.
+ simple web application to be used as an ssh client to connect 
+ to your ssh servers. It is written in Python, base on tornado, 
+ paramiko and xterm.js.  This implementation has options on the 
+ commandline to force login to a specific SSH server using a 
+ specific user if you would like upon load of the webpage.
+
 
 Features
 ~~~~~~~~
@@ -23,6 +24,8 @@ Features
 -  Auto detect the ssh server's default encoding.
 -  Modern browsers including Chrome, Firefox, Safari, Edge, Opera
    supported.
+-  Can be set to autoconnect to a ssh server with options from command line
+   
 
 Preview
 ~~~~~~~
@@ -46,13 +49,129 @@ Requirements
 Quickstart
 ~~~~~~~~~~
 
-1. Install this app, run command ``pip install webssh``
-2. Start a webserver, run command ``wssh``
+1. Install this app, run command ``pip install git+https://github.com/swjpilot/websshauto.git``
+2. Start a webserver, run command ``wsshauto``
 3. Open your browser, navigate to ``127.0.0.1:8888``
 4. Input your data, submit the form.
 
 Server options
 ~~~~~~~~~~~~~~
+.. code:: options
+
+    Usage: /usr/local/bin/wsshauto [OPTIONS]
+
+    Options:
+
+    --help                           show this help information
+
+    /usr/local/lib/python3.9/site-packages/websshauto/settings.py options:
+
+    --address                        Listen address
+
+    --autoconnect                    Auto Connect to SSH Server (default false)
+
+    --bgcolor                        Terminal Background color (default black)
+
+    --certfile                       SSL certificate file
+
+    --curcolor                       Terminal Cursor Color (default white)
+
+    --debug                          Debug mode (default False)
+
+    --delay                          The delay to call recycle_worker (default 3)
+
+    --encoding                       The default character encoding of ssh
+                                    servers. Example: --encoding='utf-8' to
+                                    solve the problem with some switches&routers
+
+    --fbidhttp                       Forbid public plain http incoming requests                                  
+                                    (default True)
+    
+    --fgcolor                        Terminal Text Color (default white)
+
+    --font                           custom font filename
+    
+    --hostfile                       User defined host keys file
+    
+    --keyfile                        SSL private key file
+    
+    --maxconn                        Maximum live connections (ssh sessions) per
+                                    client (default 20)
+    
+    --origin                         Origin policy, 'same': same origin policy,
+                                    matches host name and port number;
+                                    'primary': primary domain policy, matches
+                                    primary domain only; '<domains>': custom
+                                    domains policy, matches any domain in the
+                                    <domains> list separated by comma; '*':
+                                    wildcard policy, matches any domain, allowed
+                                    in debug mode only. (default same)
+    
+    --password                       password to use to connect automatically
+    
+    --policy                         Missing host key policy,
+                                    reject|autoadd|warning (default warning)
+    
+    --port                           Listen port (default 8888)
+    
+    --redirect                       Redirecting http to https (default True)
+    
+    --sshhost                        hostname to connect to automatically
+    
+    --sshport                        hostname to connect to automatically
+                                    (default 22)
+    
+    --ssladdress                     SSL listen address
+    
+    --sslport                        SSL listen port (default 4433)
+    
+    --syshostfile                    System wide host keys file
+    
+    --tdstream                       Trusted downstream, separated by comma
+    
+    --term                           emulation to use to connect automatically
+    
+    --timeout                        SSH connection timeout (default 3)
+    
+    --user                           user to use to connect automatically
+    
+    --version                        Show version information
+    
+    --wpintvl                        Websocket ping interval (default 0)
+    
+    --xheaders                       Support xheaders (default True)
+    
+    --xsrf                           CSRF protection (default True)
+
+    --log-file-max-size              max size of log files before rollover
+                                    (default 100000000)
+
+    --log-file-num-backups           number of log files to keep (default 10)
+
+    --log-file-prefix=PATH           Path prefix for log files. Note that if you
+                                    are running multiple tornado processes,
+                                    log_file_prefix must be different for each
+                                    of them (e.g. include the port number)
+
+    --log-rotate-interval            The interval value of timed rotating
+                                    (default 1)
+
+    --log-rotate-mode                The mode of rotating files(time or size)
+                                    (default size)
+
+    --log-rotate-when                specify the type of TimedRotatingFileHandler
+                                    interval other options:('S', 'M', 'H', 'D',
+                                    'W0'-'W6') (default midnight)
+
+    --log-to-stderr                  Send log output to stderr (colorized if
+                                    possible). By default use stderr if
+                                    --log_file_prefix is not set and no other
+                                    logging is configured.
+
+    --logging=debug|info|warning|error|none 
+                                    Set the Python log level. If 'none', tornado
+                                    won't touch the logging configuration.
+                                    (default info)
 
 .. code:: bash
 
@@ -235,12 +354,8 @@ Tips
    file("./known\_hosts") in order, if the ssh server's hostname is not
    found or the key is not matched, the connection will be aborted.
 
-.. |Build Status| image:: https://travis-ci.org/huashengdun/webssh.svg?branch=master
-   :target: https://travis-ci.org/huashengdun/webssh
-.. |codecov| image:: https://codecov.io/gh/huashengdun/webssh/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/huashengdun/webssh
 .. |PyPI - Python Version| image:: https://img.shields.io/pypi/pyversions/webssh.svg
 .. |PyPI| image:: https://img.shields.io/pypi/v/webssh.svg
-.. |Login| image:: https://github.com/huashengdun/webssh/raw/master/preview/login.png
-.. |Terminal| image:: https://github.com/huashengdun/webssh/raw/master/preview/terminal.png
+.. |Login| image:: https://github.com/swjpilot/webssh/raw/master/preview/login.png
+.. |Terminal| image:: https://github.com/swjpilot/webssh/raw/master/preview/terminal.png
 
