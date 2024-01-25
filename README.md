@@ -51,8 +51,10 @@ A simple web application to be used as an ssh client to connect to your ssh serv
 
 
 ### Server options
+
 Usage: /usr/local/bin/wsshauto [OPTIONS]
 
+```bash
 Options:
 
   --help                           show this help information
@@ -160,12 +162,12 @@ Options:
                                    possible). By default use stderr if
                                    --log_file_prefix is not set and no other
                                    logging is configured.
-
+  
   --logging=debug|info|warning|error|none 
                                    Set the Python log level. If 'none', tornado
                                    won't touch the logging configuration.
                                    (default info)
-
+```
 
 ```bash
 # start a http server with specified listen address and listen port
